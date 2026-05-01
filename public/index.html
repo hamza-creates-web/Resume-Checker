@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Resume Analyzer</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>AI Resume Analyzer</h1>
+            <p class="subtitle">Upload your resume and get instant AI-powered analysis</p>
+        </header>
+
+        <main>
+            <!-- Upload Section -->
+            <div class="upload-section" id="uploadSection">
+                <div class="drop-zone" id="dropZone">
+                    <div class="drop-zone-content">
+                        <svg class="upload-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="17 8 12 3 7 8"></polyline>
+                            <line x1="12" y1="3" x2="12" y2="15"></line>
+                        </svg>
+                        <p class="drop-zone-text">Drag & drop your resume here</p>
+                        <p class="drop-zone-subtext">or click to browse</p>
+                        <p class="file-types">PDF files only (max 10MB)</p>
+                    </div>
+                    <input type="file" id="fileInput" accept=".pdf" hidden>
+                </div>
+
+                <div class="file-info" id="fileInfo" hidden>
+                    <div class="file-details">
+                        <svg class="file-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                        </svg>
+                        <span class="file-name" id="fileName"></span>
+                        <button class="remove-file" id="removeFile" aria-label="Remove file">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="18" y1="6" x2="6" y2="18"></line>
+                                <line x1="6" y1="6" x2="18" y2="18"></line>
+                            </svg>
+                        </button>
+                    </div>
+                    <button class="upload-btn" id="uploadBtn">Analyze Resume</button>
+                </div>
+
+                <div class="loading" id="loading" hidden>
+                    <div class="spinner"></div>
+                    <p>Analyzing your resume...</p>
+                </div>
+
+                <div class="error-message" id="errorMessage" hidden></div>
+            </div>
+
+            <!-- Results Dashboard -->
+            <div class="results-dashboard" id="resultsDashboard" hidden>
+                <div class="dashboard-header">
+                    <h2>Resume Analysis Results</h2>
+                    <button class="new-analysis-btn" id="newAnalysisBtn">Analyze Another Resume</button>
+                </div>
+
+                <!-- ATS Score Section -->
+                <div class="score-section">
+                    <div class="score-card">
+                        <h3>ATS Score</h3>
+                        <div class="score-circle">
+                            <svg viewBox="0 0 100 100">
+                                <circle class="score-bg" cx="50" cy="50" r="45"></circle>
+                                <circle class="score-progress" cx="50" cy="50" r="45" id="scoreProgress"></circle>
+                            </svg>
+                            <div class="score-value">
+                                <span id="atsScore">0</span>
+                                <span class="score-max">/100</span>
+                            </div>
+                        </div>
+                        <p class="score-label" id="scoreLabel">Analyzing...</p>
+                    </div>
+                </div>
+
+                <!-- Skills Section -->
+                <div class="skills-section">
+                    <h3>Identified Skills</h3>
+                    <div class="skills-grid" id="skillsGrid">
+                        <!-- Skills will be inserted here -->
+                    </div>
+                </div>
+
+                <!-- Matched Jobs Section -->
+                <div class="skills-section">
+                    <h3>Matched Jobs</h3>
+                    <div class="skills-grid" id="matchedJobsGrid">
+                        <!-- Jobs will be inserted here -->
+                    </div>
+                </div>
+
+                <!-- Missing Keywords Section -->
+                <div class="skills-section">
+                    <h3>Missing Keywords</h3>
+                    <div class="skills-grid" id="missingKeywordsGrid">
+                        <!-- Keywords will be inserted here -->
+                    </div>
+                </div>
+
+                <!-- Improvements Section -->
+                <div class="improvements-section">
+                    <h3>Improvements</h3>
+                    <ul class="improvements-list" id="improvementsList">
+                        <!-- Improvements will be inserted here -->
+                    </ul>
+                </div>
+
+                <!-- Interview Prep Section -->
+                <div class="interview-section">
+                    <h3>Interview Prep</h3>
+                    <div class="accordion" id="interviewPrepList">
+                        <!-- Accordion items will be inserted here -->
+                    </div>
+                </div>
+
+                <!-- Download Report Button -->
+                <div class="download-section">
+                    <button class="download-btn" id="downloadBtn">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="7 10 12 15 17 10"></polyline>
+                            <line x1="12" y1="15" x2="12" y2="3"></line>
+                        </svg>
+                        Download Report
+                    </button>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>Powered by AI • Secure & Private</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
